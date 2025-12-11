@@ -814,4 +814,156 @@ plt.show()
 ```
 
 ### Feedback Analysis 
+### 🧠 Assumption 1:
+Customers with low satisfaction and low loyalty points are more likely to churn.
+
+✅ Approach:
+- You're plotting two continuous variables: satisfaction_score and point_earned.
+- A scatter plot helps detect relationships, clusters, or patterns between these two variables.
+- Coloring by churn_status adds a third visual dimension — allowing us to visually detect trends in churn behavior based on combinations of satisfaction and rewards.
+
+
+
+```python
+# Map 'exited' column to categorical labels
+df["churn_status"] = df["exited"].map({0: "Stayed", 1: "Left"})
+
+colors = {0: 'green', 1: 'red'}
+
+sns.scatterplot(
+    data=df,
+    x='satisfaction_score',
+    y='point_earned',
+    hue='exited',
+    palette=colors # Apply the custom palette here
+)
+
+plt.title("Satisfaction vs Points Earned by Churn")
+plt.xlabel("Satisfaction Score")
+plt.ylabel("Points Earned")
+plt.legend(title="Churn Status", labels=["Stayed", "Churned"]) # Ensure labels match the palette order
+plt.show()
+```
+
+
+### 🧠 Assumption 2:
+Customers who churn tend to have lower satisfaction scores than those who stay.
+
+
+✅ Approach:
+- Compare the distribution of satisfaction_score for churned vs non-churned customers.
+- Plot both on the same axis for visual comparison.
+
+📊 Why this chart?
+- A histogram shows how a variable is spread out.
+- When overlaid, we can spot shifts in the score distribution between groups.
+
+```python
+satisfied_stayed = df[df['exited'] == 0]['satisfaction_score']
+satisfied_churned = df[df['exited'] == 1]['satisfaction_score']
+
+# Stacked Histogram
+plt.hist(
+    [satisfied_stayed, satisfied_churned],
+    bins=10,
+    stacked=True,
+    color=['green', 'red'],
+    label=['Stayed', 'Churned'],
+    edgecolor='black'
+)
+
+# Labels & title
+plt.title("Satisfaction Score Distribution by Churn")
+plt.xlabel("Satisfaction Score")
+plt.ylabel("Frequency")
+plt.legend(title="Churn Status")
+
+plt.show()
+
+```
+
+
+### 🧠 Assumption 3:
+Among those who complained, a higher proportion ended up churning.
+
+✅ Approach:
+- Focus only on rows where complain = 1
+- Show what portion of them stayed vs left
+
+📊 Why this chart?
+- A pie chart visually highlights proportions within a group — perfect for categorical splits like churn within complainants.
+
+```python
+complainers = df[df['complain'] == 1]
+
+churn_distribution = complainers['exited'].value_counts(normalize=True) * 100
+
+print("Churn Distribution Among Complainers:\n")
+print(churn_distribution)
+
+plt.pie(
+    churn_distribution,
+    labels=['Stayed (0)', 'Churned (1)'],
+    autopct='%1.1f%%',
+    startangle=90,
+    colors=['green', 'red']
+)
+
+plt.title("Churn Distribution Among Complainers")
+plt.show()
+```
+
+### Assumption 4
+Customers with high salary and high balance are less likely to churn
+Approach:
+- You’re dealing with two continuous numerical variables: salary and balance.
+- A scatter plot is ideal to visualize how those two interact and to detect patterns or clusters related to churn.
+- Coloring by churn_status adds an extra dimension (a third variable) visually, making it easier to spot correlations between financial metrics and churn behavior.
+
+```python
+sample_df = df.sample(500, random_state=42)
+
+plt.figure(figsize=(10,6))
+sns.scatterplot(
+    data=sample_df,
+    x='salary',
+    y='balance',
+    hue='exited',
+    alpha=0.6
+)
+
+plt.title("Salary vs Balance by Churn Status")
+plt.xlabel("Salary")
+plt.ylabel("Balance")
+plt.legend(title="Churn Status", labels=["Stayed", "Churned"])
+plt.show()
+
+```
+
+
+### Assumption 5
+- Churn rate differs between FD holders and non-holders
+
+Approach:
+- Filter the dataset to include only FD holders (hasfd == 1).
+- Use value_counts(normalize=True) gives percentage proportions of churned vs. non-churned customers among FD holders.
+- Plot pie chart to show part-to-whole relationships.
+
+```python
+fd_holders=df[df['hasfd']==1]
+
+churn_dist = fd_holders['churn_status'].value_counts(normalize=True).round(2)
+
+plt.figure(figsize=(7,7))
+plt.pie(
+    churn_dist.values,
+    labels=churn_dist.index,
+    autopct='%1.2f%%',
+    startangle=90
+)
+
+plt.title("Churn Distribution Among FD Holders")
+plt.tight_layout()
+plt.show()
+```
 
