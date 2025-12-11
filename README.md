@@ -366,9 +366,9 @@ plt.show()
 
 ```
 
-![income](https://github.com/parthpatoliya97/Bank_Customer_Churn_Analysis/blob/main/images/churn_rate_by_income_group_values.png?raw=true)
+![income](https://github.com/parthpatoliya97/Bank_Customer_Churn_Analysis/blob/main/images/1.1.png?raw=true)
 
-![income](https://github.com/parthpatoliya97/Bank_Customer_Churn_Analysis/blob/main/images/churn_rate_by_income_group_visual.png?raw=true)
+![income](https://github.com/parthpatoliya97/Bank_Customer_Churn_Analysis/blob/main/images/1.png?raw=true)
 
 ### compare customer segement using grouped statistics
 ### Bivariate analysis 
@@ -382,7 +382,7 @@ print("Average Number of Products Based on Customer Tenure:")
 print(tenure_product_analysis)
 ```
 
-![avg]()
+![avg](https://github.com/parthpatoliya97/Bank_Customer_Churn_Analysis/blob/main/images/2.png?raw=true)
 
 ### Multivariate analysis 
 
@@ -391,7 +391,7 @@ print(tenure_product_analysis)
 churn_analysis = df.groupby("exited")[["salary", "num_of_products"]].mean()
 print(churn_analysis)
 ```
-
+![avg](https://github.com/parthpatoliya97/Bank_Customer_Churn_Analysis/blob/main/images/3.1.png?raw=true)
 ```python
 # Bar chart to compare salary for exited vs. retained customers
 plt.figure(figsize=(6, 4))
@@ -400,7 +400,7 @@ plt.title("Average Salary - Stayed vs. Exited")
 plt.ylabel("Average Salary")
 plt.show()
 ```
-
+![avg](https://github.com/parthpatoliya97/Bank_Customer_Churn_Analysis/blob/main/images/3.2.png?raw=true)
 ```python
 # Bar chart to compare product usage for exited vs. retained customers
 plt.figure(figsize=(6, 4))
@@ -409,6 +409,7 @@ plt.title("Average Number of Products - Stayed vs. Exited")
 plt.ylabel("Number of Products")
 plt.show()
 ```
+![demo](https://github.com/parthpatoliya97/Bank_Customer_Churn_Analysis/blob/main/images/4.png?raw=true)
 
 ### Demographic Analysis 
 
@@ -703,7 +704,7 @@ plt.show()
 
 ```
 
-![vis]()
+![vis](https://github.com/parthpatoliya97/Bank_Customer_Churn_Analysis/blob/main/images/5.png?raw=true)
 
 ```python
 # Step 1: Group by 'hascrcard' and 'exited' and count number of customers in each group
@@ -731,6 +732,9 @@ plt.legend(title='Churned (Exited)')
 plt.tight_layout()
 plt.show()
 ```
+![demo](https://github.com/parthpatoliya97/Bank_Customer_Churn_Analysis/blob/main/images/6.1.png?raw=true)
+
+![demo](https://github.com/parthpatoliya97/Bank_Customer_Churn_Analysis/blob/main/images/6.2.png?raw=true)
 
 ### credit card type distribution across churn status 
 
@@ -758,7 +762,8 @@ plt.tight_layout()
 plt.show()
 
 ```
-
+![demo](https://github.com/parthpatoliya97/Bank_Customer_Churn_Analysis/blob/main/images/7.1.png?raw=true)
+![demo](https://github.com/parthpatoliya97/Bank_Customer_Churn_Analysis/blob/main/images/7.2.png?raw=true)
 
 ### loan ownership vs churn 
 
@@ -770,6 +775,7 @@ plt.xlabel("HasLoan (0 = No, 1 = Yes)")
 plt.ylabel("Number of Customers")
 plt.show()
 ```
+![demo](https://github.com/parthpatoliya97/Bank_Customer_Churn_Analysis/blob/main/images/8.png?raw=true)
 
 ### number of products vs churn 
 
@@ -785,6 +791,7 @@ plt.xlabel("Card type")
 plt.ylabel("No of churned customers")
 plt.show()
 ```
+![demo](https://github.com/parthpatoliya97/Bank_Customer_Churn_Analysis/blob/main/images/9.png?raw=true)
 
 ### product distribution across churn 
 
@@ -826,6 +833,8 @@ plt.tight_layout()
 plt.show()
 
 ```
+![demo](https://github.com/parthpatoliya97/Bank_Customer_Churn_Analysis/blob/main/images/10.1.png?raw=true)
+![demo](https://github.com/parthpatoliya97/Bank_Customer_Churn_Analysis/blob/main/images/10.2.png?raw=true)
 
 ### average product usage by tenure groups across churn status 
 
@@ -853,6 +862,7 @@ plt.tight_layout()
 plt.show()
 
 ```
+![demo](https://github.com/parthpatoliya97/Bank_Customer_Churn_Analysis/blob/main/images/11.png?raw=true)
 
 ### average number of products usage by given credit score ranges across churned status 
 
@@ -900,6 +910,7 @@ plt.tight_layout()
 plt.show()
 
 ```
+![demo](https://github.com/parthpatoliya97/Bank_Customer_Churn_Analysis/blob/main/images/12.png?raw=true)
 
 ### Feedback Analysis 
 ### 🧠 Assumption 1:
@@ -932,7 +943,7 @@ plt.ylabel("Points Earned")
 plt.legend(title="Churn Status", labels=["Stayed", "Churned"]) # Ensure labels match the palette order
 plt.show()
 ```
-
+![demo](https://github.com/parthpatoliya97/Bank_Customer_Churn_Analysis/blob/main/images/assumption%20satisfaction%20vs%20points.png?raw=true)
 
 ### 🧠 Assumption 2:
 Customers who churn tend to have lower satisfaction scores than those who stay.
@@ -969,7 +980,7 @@ plt.legend(title="Churn Status")
 plt.show()
 
 ```
-
+![demo](https://github.com/parthpatoliya97/Bank_Customer_Churn_Analysis/blob/main/images/13.png?raw=true)
 
 ### 🧠 Assumption 3:
 Among those who complained, a higher proportion ended up churning.
@@ -1000,6 +1011,9 @@ plt.pie(
 plt.title("Churn Distribution Among Complainers")
 plt.show()
 ```
+![demo](https://github.com/parthpatoliya97/Bank_Customer_Churn_Analysis/blob/main/images/14.png?raw=true)
+
+![demo](https://github.com/parthpatoliya97/Bank_Customer_Churn_Analysis/blob/main/images/14.1.png?raw=true)
 
 ### Assumption 4
 Customers with high salary and high balance are less likely to churn
@@ -1027,7 +1041,7 @@ plt.legend(title="Churn Status", labels=["Stayed", "Churned"])
 plt.show()
 
 ```
-
+![demo](https://github.com/parthpatoliya97/Bank_Customer_Churn_Analysis/blob/main/images/assumption%20salary%20vs%20balance.png?raw=true)
 
 ### Assumption 5
 - Churn rate differs between FD holders and non-holders
@@ -1054,4 +1068,4 @@ plt.title("Churn Distribution Among FD Holders")
 plt.tight_layout()
 plt.show()
 ```
-
+![demo](https://github.com/parthpatoliya97/Bank_Customer_Churn_Analysis/blob/main/images/15.png?raw=true)
