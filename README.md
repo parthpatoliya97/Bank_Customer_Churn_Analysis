@@ -242,6 +242,7 @@ plt.ylabel("Count")
 plt.tight_layout()
 plt.show()
 ```
+![val](https://github.com/parthpatoliya97/Bank_Customer_Churn_Analysis/blob/main/images/loan_status_values.png?raw=true)
 
 ![has_loan](https://github.com/parthpatoliya97/Bank_Customer_Churn_Analysis/blob/main/images/loan_status_distribution_visual.png?raw=true)
 
@@ -258,6 +259,7 @@ plt.ylabel("Count")
 plt.tight_layout()
 plt.show()
 ```
+![vis](https://github.com/parthpatoliya97/Bank_Customer_Churn_Analysis/blob/main/images/fixed_deposit_values.png?raw=true)
 
 ![has_fd](https://github.com/parthpatoliya97/Bank_Customer_Churn_Analysis/blob/main/images/fixed_deposit_distribution_visuals.png?raw=true)
 
