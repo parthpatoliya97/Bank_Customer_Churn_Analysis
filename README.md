@@ -5,10 +5,14 @@
 df.info()
 ```
 
+![info](https://github.com/parthpatoliya97/Bank_Customer_Churn_Analysis/blob/main/images/column%20info%20about%20dataset.png?raw=true)
+
 ```python
 # Print the column names of the dataset.
 print(df.columns) 
 ```
+
+![column_names](https://github.com/parthpatoliya97/Bank_Customer_Churn_Analysis/blob/main/images/column_names.png?raw=true)
 
 ```python
 # Standardize the column names: convert to lowercase and replace spaces with underscores.
@@ -21,6 +25,8 @@ df.columns = df.columns.str.lower().str.replace(" ", "_")
 df.columns
 ```
 
+![column_names](https://github.com/parthpatoliya97/Bank_Customer_Churn_Analysis/blob/main/images/columns_names_with_underscore_correction.png?raw=true)
+
 ### Handling Missing Values
 ```python
 # Check for missing values
@@ -30,6 +36,8 @@ print(df.isnull().sum())
 # df.isnull() → Returns a DataFrame of the same shape as df, with True where a value is missing (NaN) and False otherwise.
 # .sum() → Counts the number of True values (i.e., missing values) in each column.
 ```
+
+![null_values](https://github.com/parthpatoliya97/Bank_Customer_Churn_Analysis/blob/main/images/check_null_before_cleaning.png?raw=true)
 
 ```python
 # Impute missing 'salary' values with median
@@ -53,11 +61,15 @@ df['card_type'].fillna(df['card_type'].mode()[0], inplace=True)
 print(df.isnull().sum())  # Count of NaN values
 ```
 
+![after](https://github.com/parthpatoliya97/Bank_Customer_Churn_Analysis/blob/main/images/check_null_after_cleaning.png?raw=true)
+
 ```python
 #  Convert 'card_type' to uppercase and Strip whitespace from 'card_type'
 df["card_type"] = df["card_type"].str.upper().str.strip()
 df['card_type'].unique()
 ```
+
+![card_type](https://github.com/parthpatoliya97/Bank_Customer_Churn_Analysis/blob/main/images/upper_case_all_card_type.png?raw=true)
 
 ### Explore Numeric Values 
 
@@ -67,12 +79,16 @@ numeric_columns = df.select_dtypes(include=['number']).columns.tolist()
 print(numeric_columns) 
 ```
 
+![numeric](https://github.com/parthpatoliya97/Bank_Customer_Churn_Analysis/blob/main/images/numeric_columns.png?raw=true)
+
 ```python
 # Count unique values in each numeric column
 unique_counts = {col: df[col].nunique() for col in numeric_columns}
 
 print(unique_counts)
 ```
+
+![count](https://github.com/parthpatoliya97/Bank_Customer_Churn_Analysis/blob/main/images/numeric_columns_count.png?raw=true)
 
 ### Outlier Detection and Treatment
 
@@ -81,6 +97,8 @@ df['salary'].plot(kind='box',vert=False)
 plt.title("Salary Distribution")
 plt.show()
 ```
+
+![outlier](https://github.com/parthpatoliya97/Bank_Customer_Churn_Analysis/blob/main/images/salary_distribution_with_outliers.png?raw=true)
 
 ```python
 # Calculate IQR
@@ -105,6 +123,7 @@ print()
 outlier_count = ((df["salary"] < lower_bound) | (df["salary"] > upper_bound)).sum()
 print("Count of Outlier Customers Based on Salary:", outlier_count)
 ```
+![upper](https://github.com/parthpatoliya97/Bank_Customer_Churn_Analysis/blob/main/images/salary_upper_lower_bound.png?raw=true)
 
 ```python
 # removing the upper bound outliers
@@ -114,11 +133,15 @@ df['salary'].plot(kind='box',vert=False)
 plt.show()
 ```
 
+![outlier](https://github.com/parthpatoliya97/Bank_Customer_Churn_Analysis/blob/main/images/salary_distribution_without_outliers.png?raw=true)
+
 ```python
 df['balance'].plot(kind='box',vert=False)
 plt.title("Balance Distribution")
 plt.show()
 ```
+
+![balance](https://github.com/parthpatoliya97/Bank_Customer_Churn_Analysis/blob/main/images/balance_distribution_with_outliers.png?raw=true)
 
 ```python
 # Step 1: Calculate IQR
@@ -138,10 +161,14 @@ print(f"upper_bound : {upper_cap}")
 df["balance"] = np.where(df["balance"] > upper_cap, upper_cap, df["balance"])
 ```
 
+![values](https://github.com/parthpatoliya97/Bank_Customer_Churn_Analysis/blob/main/images/balance_upper_lower_bound.png?raw=true)
+
 ```python
 df['balance'].plot(kind='box',vert=False)
 plt.show()
 ```
+
+![values](https://github.com/parthpatoliya97/Bank_Customer_Churn_Analysis/blob/main/images/balance_without_outliers.png?raw=true)
 
 ### EDA
 
@@ -162,23 +189,14 @@ print(f"Mean Balance: {mean_balance}, Median Balance: {median_balance}\n")
 print(f"Mean Credit Score: {mean_credit_score}, Median Credit Score: {median_credit_score}\n")
 ```
 
+![mean_median](https://github.com/parthpatoliya97/Bank_Customer_Churn_Analysis/blob/main/images/mean_median_mode.png?raw=true)
+
 ```python
 # Count and display how many customers fall into each category of: Gender, Card Type, HasLoan, HasFD
 
 gender_count = df["gender"].value_counts()
 print("Gender Distribution:\n", gender_count)
 
-card_type_count = df["card_type"].value_counts()
-print("\nCard Type Distribution:\n", card_type_count)
-
-loan_status_count = df["hasloan"].value_counts()
-print("\nLoan Status Distribution:\n", loan_status_count)
-
-fd_status_count = df["hasfd"].value_counts()
-print("\nFixed Deposit Status Distribution:\n", fd_status_count)
-```
-
-```python
 # Plot gender distribution
 plt.figure(figsize=(6, 4))
 gender_count.plot(kind='bar')
@@ -187,10 +205,16 @@ plt.xlabel("Gender")
 plt.ylabel("Count")
 plt.tight_layout()
 plt.show()
-
 ```
 
+![values](https://github.com/parthpatoliya97/Bank_Customer_Churn_Analysis/blob/main/images/gender_distribution_values.png?raw=true)
+
+![visual](https://github.com/parthpatoliya97/Bank_Customer_Churn_Analysis/blob/main/images/gender_distribution_chart.png?raw=true)
+
 ```python
+card_type_count = df["card_type"].value_counts()
+print("\nCard Type Distribution:\n", card_type_count)
+
 # Plot card type distribution
 plt.figure(figsize=(6, 4))
 card_type_count.plot(kind='bar')
@@ -201,7 +225,14 @@ plt.tight_layout()
 plt.show()
 ```
 
+![card_type](https://github.com/parthpatoliya97/Bank_Customer_Churn_Analysis/blob/main/images/card_type_distribution_values.png?raw=true)
+
+![visual](https://github.com/parthpatoliya97/Bank_Customer_Churn_Analysis/blob/main/images/card_type_distribution_visual.png?raw=true)
+
 ```python
+loan_status_count = df["hasloan"].value_counts()
+print("\nLoan Status Distribution:\n", loan_status_count)
+
 # Plot loan status distribution
 plt.figure(figsize=(6, 4))
 loan_status_count.plot(kind='bar')
@@ -212,7 +243,12 @@ plt.tight_layout()
 plt.show()
 ```
 
+![has_loan](https://github.com/parthpatoliya97/Bank_Customer_Churn_Analysis/blob/main/images/loan_status_distribution_visual.png?raw=true)
+
 ```python
+fd_status_count = df["hasfd"].value_counts()
+print("\nFixed Deposit Status Distribution:\n", fd_status_count)
+
 # Plot fixed deposit status distribution
 plt.figure(figsize=(6, 4))
 fd_status_count.plot(kind='bar')
@@ -222,6 +258,8 @@ plt.ylabel("Count")
 plt.tight_layout()
 plt.show()
 ```
+
+![has_fd](https://github.com/parthpatoliya97/Bank_Customer_Churn_Analysis/blob/main/images/fixed_deposit_distribution_visuals.png?raw=true)
 
 ```python
 # Select a random sample of 200 customers from the dataset.
@@ -239,6 +277,8 @@ plt.ylabel("Balance")
 plt.show()
 ```
 
+![sample](https://github.com/parthpatoliya97/Bank_Customer_Churn_Analysis/blob/main/images/credit_score_vs_balance_scatter_plot.png?raw=true)
+
 ### Feature Engineering
 
 ```python
@@ -252,6 +292,8 @@ df["Debt-to-Income Ratio"] = (df["balance"] + (df["hasloan"] * df["salary"] * 0.
 print(df[["first_name", "Debt-to-Income Ratio"]].tail())
 ```
 
+![debt](https://github.com/parthpatoliya97/Bank_Customer_Churn_Analysis/blob/main/images/debt_to_income_ratio.png?raw=true)
+
 ```python
 # Create new column calculating Loyalty Score
 # Formula: (Tenure × Satisfaction Score) / (1 + Count of Complains)
@@ -261,6 +303,8 @@ df["Loyalty Score"] = (df["tenure"] * df["satisfaction_score"]) / (1 + df["count
 # Display dataset with new features
 print(df[["first_name","Loyalty Score"]].head())
 ```
+
+![loyalty](https://github.com/parthpatoliya97/Bank_Customer_Churn_Analysis/blob/main/images/loyalty_score.png?raw=true)
 
 ### analyze complaints by state 
 
@@ -284,6 +328,8 @@ df["High Complainer"] = df["Above State Avg Complaints"].astype(int)
 ```python
 df[['first_name','state','count_of_complains','High Complainer']].head(10)
 ```
+
+![visual](https://github.com/parthpatoliya97/Bank_Customer_Churn_Analysis/blob/main/images/complaints_higher_than_the_avg_state_complaints.png?raw=true)
 
 ### Univariate Analysis - Categorize Customers by Salary 
 
@@ -318,6 +364,10 @@ plt.show()
 
 ```
 
+![income](https://github.com/parthpatoliya97/Bank_Customer_Churn_Analysis/blob/main/images/churn_rate_by_income_group_values.png?raw=true)
+
+![income](https://github.com/parthpatoliya97/Bank_Customer_Churn_Analysis/blob/main/images/churn_rate_by_income_group_visual.png?raw=true)
+
 ### compare customer segement using grouped statistics
 ### Bivariate analysis 
 
@@ -329,6 +379,8 @@ tenure_product_analysis = df.groupby("tenure")["num_of_products"].mean()
 print("Average Number of Products Based on Customer Tenure:")
 print(tenure_product_analysis)
 ```
+
+![avg]()
 
 ### Multivariate analysis 
 
@@ -374,6 +426,9 @@ churn_counts.plot(kind='pie', labels=labels, autopct='%1.1f%%')
 plt.title('Customer Churn Proportion')
 plt.show()
 ```
+![val](https://github.com/parthpatoliya97/Bank_Customer_Churn_Analysis/blob/main/images/customer_churn_values.png?raw=true)
+
+![values](https://github.com/parthpatoliya97/Bank_Customer_Churn_Analysis/blob/main/images/customer_churn_pie_chart.png?raw=true)
 
 ### churn variation across states 
 
@@ -387,6 +442,10 @@ region_churn_counts.plot(kind='pie', autopct='%1.1f%%')
 plt.title('Churn Proportion by State')
 plt.show()
 ```
+
+![churn](https://github.com/parthpatoliya97/Bank_Customer_Churn_Analysis/blob/main/images/churn_by_state_values.png?raw=true)
+
+![vis](https://github.com/parthpatoliya97/Bank_Customer_Churn_Analysis/blob/main/images/churn_by_state_pie_chart.png?raw=true)
 
 ### visualize age vs exit status 
 
@@ -410,6 +469,8 @@ plt.legend()
 plt.show()
 ```
 
+![age](https://github.com/parthpatoliya97/Bank_Customer_Churn_Analysis/blob/main/images/age_vs_num_of_products_scatter_plot.png?raw=true)
+
 ### visualize age distribution and exit status 
 
 ```python
@@ -420,6 +481,8 @@ plt.xlabel("Churn Status (Exited)")
 plt.ylabel("Age")
 plt.show()
 ```
+
+![visual](https://github.com/parthpatoliya97/Bank_Customer_Churn_Analysis/blob/main/images/box_plot_age_distribution_by_churn_status.png?raw=true)
 
 ### visualize gender and exit status 
 
@@ -447,6 +510,10 @@ plt.ylabel("Churn Rate (%)")
 plt.show()
 
 ```
+
+![churn](https://github.com/parthpatoliya97/Bank_Customer_Churn_Analysis/blob/main/images/churn_rate_by_gender_values.png?raw=true)
+
+![vis](https://github.com/parthpatoliya97/Bank_Customer_Churn_Analysis/blob/main/images/chuen_rate_by_gender_visual.png?raw=true)
 
 ### churn rate by region and gender 
 
@@ -478,8 +545,11 @@ plt.xlabel('State')
 plt.ylabel('Churn Rate (%)')
 plt.show()
 
-
 ```
+
+![churn](https://github.com/parthpatoliya97/Bank_Customer_Churn_Analysis/blob/main/images/churn_Rate_by_state_and_gender_values.png?raw=true)
+
+![vis](https://github.com/parthpatoliya97/Bank_Customer_Churn_Analysis/blob/main/images/churn_rate_by_state_and_gender_visual.png?raw=true)
 
 ### relationship between income groups - salary and churn rate
 
@@ -510,6 +580,10 @@ plt.xlabel('Income Group')
 plt.ylabel('Churn Rate (%)')
 plt.show()
 ```
+
+![income](https://github.com/parthpatoliya97/Bank_Customer_Churn_Analysis/blob/main/images/churn_rate_by_income_group_values.png?raw=true)
+
+![vis](https://github.com/parthpatoliya97/Bank_Customer_Churn_Analysis/blob/main/images/churn_rate_by_income_group_visual.png?raw=true)
 
 ```python
 # Step 1: Define bins and labels for age groups
@@ -558,6 +632,10 @@ plt.show()
 
 ```
 
+![val](https://github.com/parthpatoliya97/Bank_Customer_Churn_Analysis/blob/main/images/churn_rate_by_region_gender.png?raw=true)
+
+![vis](https://github.com/parthpatoliya97/Bank_Customer_Churn_Analysis/blob/main/images/churn_rate_by_region_gender_visual.png?raw=true)
+
 ### average satisfaction for age groups 
 
 ```python
@@ -584,6 +662,10 @@ plt.show()
 
 ```
 
+![age group](https://github.com/parthpatoliya97/Bank_Customer_Churn_Analysis/blob/main/images/age_group_avg_satisfaction_values.png?raw=true)
+
+![vis](https://github.com/parthpatoliya97/Bank_Customer_Churn_Analysis/blob/main/images/age_group_avg_satisfaction_visuals.png?raw=true)
+
 ### count of customers by employment type highlghting churned vs non-churned customers 
 
 ```python
@@ -598,6 +680,8 @@ plt.xlabel("Employment Type")
 plt.ylabel("Number of customers")
 plt.show()
 ```
+
+![cus](https://github.com/parthpatoliya97/Bank_Customer_Churn_Analysis/blob/main/images/employment_type_vs_churn.png?raw=true)
 
 ### Product analysis
 
@@ -616,6 +700,8 @@ plt.ylabel("Number of churned Customers")
 plt.show()
 
 ```
+
+![vis]()
 
 ```python
 # Step 1: Group by 'hascrcard' and 'exited' and count number of customers in each group
