@@ -1,5 +1,9 @@
 # Bank_Customer_Churn_Analysis
 
+## Project Objective
+- Performed an end-to-end Bank Customer Churn Analysis using Python by analyzing customer behavior across region, state, age groups, income segments, and employment types. 
+- Retrieved and processed data using Pandas, handled missing values, and removed outliers using the IQR method to improve data quality. Applied feature engineering to create meaningful variables and conducted exploratory data analysis (EDA) using NumPy for statistical computations and Matplotlib for visual insights. 
+- The project showcased complete data-pipeline skills—from data cleansing and preprocessing to churn pattern identification and business insight generation.
 
 ```python
 df.info()
